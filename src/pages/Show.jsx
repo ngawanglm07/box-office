@@ -3,19 +3,10 @@ import { useEffect , useState } from 'react';
 import {useParams} from 'react-router-dom'
 import { getShowById } from '../api/Api';
 
-
-
-function Show() {
-
-  const {showId} = useParams();
-
+const useShowById = (showId) => {
 
   const [showData , setShowData] = useState(null);
   const [showError , setShowError] = useState(null);
-
-    
-
-
 
   useEffect(()=>{
 
@@ -31,7 +22,15 @@ function Show() {
     fetchData();
   },[showId])
 
+  return [ showData , showError]
 
+
+}
+
+function Show() {
+
+  const {showId} = useParams();
+  const {showData , showError} = useShowById(showId);
 
 if(showError){
   return <div>we have error ${showError.message}</div>
@@ -42,9 +41,7 @@ if(showData ){
    return <div> {showData.name}</div>
 }
  
-
-
-   return <div>  show page for {showId}</div>
+return <div>  show page for {showId}</div>
   
 }
 
