@@ -11,10 +11,6 @@ const  SearchForm = ({onSearch}) => {
 
    useEffect(() => {
     console.log('search option changes' , searchOption)
-
-    return ()=>{
-      console.log('search option changes' , searchOption)
-    }
    },[ searchOption])
 
 
